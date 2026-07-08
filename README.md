@@ -58,6 +58,8 @@ The software is **registered with the Brazilian INPI** (intellectual property of
 ### Gamification & Progress
 ![Gamification](screenshots/gamification.png)
 
+![Radio](screenshots/radio.png)
+
 ---
 
 ## 🚀 Key Features
