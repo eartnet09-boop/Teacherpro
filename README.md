@@ -160,7 +160,7 @@ O TEACHERPRO pode ser explorado em múltiplos modelos de negócio:
 
 ##  Demonstração
 
- [Assista à demonstração em vídeo](#) *(link para o seu vídeo no YouTube)*
+ [Assista à demonstração em vídeo](#) https://youtu.be/ZR_pklHKgB4
 
 ![Tela de Pronúncia](docs/screenshots/pronunciation.png)
 ![Tela de Diálogo](docs/screenshots/dialog.png)
