@@ -162,9 +162,6 @@ O TEACHERPRO pode ser explorado em múltiplos modelos de negócio:
 
  [Assista à demonstração em vídeo](#) https://youtu.be/ZR_pklHKgB4
 
-![Tela de Pronúncia](docs/screenshots/pronunciation.png)
-![Tela de Diálogo](docs/screenshots/dialog.png)
-![Tela de Progresso](docs/screenshots/progress.png)
 
 ---
 
