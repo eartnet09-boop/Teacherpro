@@ -1,0 +1,698 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+
+<title>
+    Bandit Report
+</title>
+
+<style>
+
+html * {
+    font-family: "Arial", sans-serif;
+}
+
+pre {
+    font-family: "Monaco", monospace;
+}
+
+.bordered-box {
+    border: 1px solid black;
+    padding-top:.5em;
+    padding-bottom:.5em;
+    padding-left:1em;
+}
+
+.metrics-box {
+    font-size: 1.1em;
+    line-height: 130%;
+}
+
+.metrics-title {
+    font-size: 1.5em;
+    font-weight: 500;
+    margin-bottom: .25em;
+}
+
+.issue-description {
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+.candidate-issues {
+    margin-left: 2em;
+    border-left: solid 1px; LightGray;
+    padding-left: 5%;
+    margin-top: .2em;
+    margin-bottom: .2em;
+}
+
+.issue-block {
+    border: 1px solid LightGray;
+    padding-left: .5em;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    margin-bottom: .5em;
+}
+
+.issue-sev-high {
+    background-color: Pink;
+}
+
+.issue-sev-medium {
+    background-color: NavajoWhite;
+}
+
+.issue-sev-low {
+    background-color: LightCyan;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="metrics">
+    <div class="metrics-box bordered-box">
+        <div class="metrics-title">
+            Metrics:<br>
+        </div>
+        Total lines of code: <span id="loc">5616</span><br>
+        Total lines skipped (#nosec): <span id="nosec">0</span>
+    </div>
+</div>
+
+
+
+
+<br>
+<div id="results">
+    
+<div id="issue-0">
+<div class="issue-block issue-sev-low">
+    <b>try_except_pass: </b> Try, Except, Pass detected.<br>
+    <b>Test ID:</b> B110<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="src/audio\processor.py" target="_blank">src/audio\processor.py</a><br>
+    <b>Line number: </b>547<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.4/plugins/b110_try_except_pass.html" target="_blank">https://bandit.readthedocs.io/en/1.9.4/plugins/b110_try_except_pass.html</a><br>
+
+<div class="code">
+<pre>
+546	                loudness_lufs = float(self.loudness_meter.integrated_loudness(y))
+547	            except Exception:
+548	                pass
+549	        
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-1">
+<div class="issue-block issue-sev-medium">
+    <b>hardcoded_bind_all_interfaces: </b> Possible binding to all interfaces.<br>
+    <b>Test ID:</b> B104<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>MEDIUM<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/605.html" target="_blank">CWE-605</a><br>
+    <b>File: </b><a href="src/config.py" target="_blank">src/config.py</a><br>
+    <b>Line number: </b>46<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.4/plugins/b104_hardcoded_bind_all_interfaces.html" target="_blank">https://bandit.readthedocs.io/en/1.9.4/plugins/b104_hardcoded_bind_all_interfaces.html</a><br>
+
+<div class="code">
+<pre>
+45	SERVER_CONFIG: Dict[str, Any] = {
+46	    &quot;host&quot;: os.getenv(&quot;HOST&quot;, &quot;0.0.0.0&quot;),
+47	    &quot;port&quot;: int(os.getenv(&quot;PORT&quot;, &quot;8000&quot;)),
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-2">
+<div class="issue-block issue-sev-medium">
+    <b>hardcoded_sql_expressions: </b> Possible SQL injection vector through string-based query construction.<br>
+    <b>Test ID:</b> B608<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>MEDIUM<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/89.html" target="_blank">CWE-89</a><br>
+    <b>File: </b><a href="src/data\seeder.py" target="_blank">src/data\seeder.py</a><br>
+    <b>Line number: </b>101<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.4/plugins/b608_hardcoded_sql_expressions.html" target="_blank">https://bandit.readthedocs.io/en/1.9.4/plugins/b608_hardcoded_sql_expressions.html</a><br>
+
+<div class="code">
+<pre>
+100	        for table in tables:
+101	            await db.execute(f&quot;DELETE FROM {table}&quot;)
+102	        logger.info(&quot;🧹 Dados anteriores removidos&quot;)
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-3">
+<div class="issue-block issue-sev-low">
+    <b>blacklist: </b> Standard pseudo-random generators are not suitable for security/cryptographic purposes.<br>
+    <b>Test ID:</b> B311<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/330.html" target="_blank">CWE-330</a><br>
+    <b>File: </b><a href="src/enhancements\web_services.py" target="_blank">src/enhancements\web_services.py</a><br>
+    <b>Line number: </b>139<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_calls.html#b311-random" target="_blank">https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_calls.html#b311-random</a><br>
+
+<div class="code">
+<pre>
+138	            country=&quot;&quot;,
+139	            temperature_c=random.choice(temps),
+140	            condition=random.choice(conditions),
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-4">
+<div class="issue-block issue-sev-low">
+    <b>blacklist: </b> Standard pseudo-random generators are not suitable for security/cryptographic purposes.<br>
+    <b>Test ID:</b> B311<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/330.html" target="_blank">CWE-330</a><br>
+    <b>File: </b><a href="src/enhancements\web_services.py" target="_blank">src/enhancements\web_services.py</a><br>
+    <b>Line number: </b>140<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_calls.html#b311-random" target="_blank">https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_calls.html#b311-random</a><br>
+
+<div class="code">
+<pre>
+139	            temperature_c=random.choice(temps),
+140	            condition=random.choice(conditions),
+141	            humidity=60,
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-5">
+<div class="issue-block issue-sev-low">
+    <b>blacklist: </b> Standard pseudo-random generators are not suitable for security/cryptographic purposes.<br>
+    <b>Test ID:</b> B311<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/330.html" target="_blank">CWE-330</a><br>
+    <b>File: </b><a href="src/enhancements\web_services.py" target="_blank">src/enhancements\web_services.py</a><br>
+    <b>Line number: </b>203<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_calls.html#b311-random" target="_blank">https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_calls.html#b311-random</a><br>
+
+<div class="code">
+<pre>
+202	        
+203	        seed = seed_map.get(theme.lower(), random.randint(1, 100))
+204	        return f&quot;https://picsum.photos/seed/{theme.lower()}{seed}/{width}/{height}&quot;
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-6">
+<div class="issue-block issue-sev-low">
+    <b>blacklist: </b> Standard pseudo-random generators are not suitable for security/cryptographic purposes.<br>
+    <b>Test ID:</b> B311<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/330.html" target="_blank">CWE-330</a><br>
+    <b>File: </b><a href="src/enhancements\web_services.py" target="_blank">src/enhancements\web_services.py</a><br>
+    <b>Line number: </b>232<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_calls.html#b311-random" target="_blank">https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_calls.html#b311-random</a><br>
+
+<div class="code">
+<pre>
+231	                    if products:
+232	                        product = random.choice(products)
+233	                        return ProductInfo(
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-7">
+<div class="issue-block issue-sev-low">
+    <b>blacklist: </b> Standard pseudo-random generators are not suitable for security/cryptographic purposes.<br>
+    <b>Test ID:</b> B311<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/330.html" target="_blank">CWE-330</a><br>
+    <b>File: </b><a href="src/enhancements\web_services.py" target="_blank">src/enhancements\web_services.py</a><br>
+    <b>Line number: </b>301<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_calls.html#b311-random" target="_blank">https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_calls.html#b311-random</a><br>
+
+<div class="code">
+<pre>
+300	        
+301	        return random.choice(sample_flights)
+302	    
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-8">
+<div class="issue-block issue-sev-low">
+    <b>blacklist: </b> Standard pseudo-random generators are not suitable for security/cryptographic purposes.<br>
+    <b>Test ID:</b> B311<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/330.html" target="_blank">CWE-330</a><br>
+    <b>File: </b><a href="src/llm\prompts.py" target="_blank">src/llm\prompts.py</a><br>
+    <b>Line number: </b>201<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_calls.html#b311-random" target="_blank">https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_calls.html#b311-random</a><br>
+
+<div class="code">
+<pre>
+200	        import random
+201	        return random.choice(self.encouragement_phrases)
+202	    
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-9">
+<div class="issue-block issue-sev-low">
+    <b>blacklist: </b> Consider possible security implications associated with the subprocess module.<br>
+    <b>Test ID:</b> B404<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank">CWE-78</a><br>
+    <b>File: </b><a href="src/main.py" target="_blank">src/main.py</a><br>
+    <b>Line number: </b>79<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_imports.html#b404-import-subprocess" target="_blank">https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_imports.html#b404-import-subprocess</a><br>
+
+<div class="code">
+<pre>
+78	    &quot;&quot;&quot;Verifica se FFmpeg está instalado&quot;&quot;&quot;
+79	    import subprocess
+80	    
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-10">
+<div class="issue-block issue-sev-low">
+    <b>start_process_with_partial_path: </b> Starting a process with a partial executable path<br>
+    <b>Test ID:</b> B607<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank">CWE-78</a><br>
+    <b>File: </b><a href="src/main.py" target="_blank">src/main.py</a><br>
+    <b>Line number: </b>82<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.4/plugins/b607_start_process_with_partial_path.html" target="_blank">https://bandit.readthedocs.io/en/1.9.4/plugins/b607_start_process_with_partial_path.html</a><br>
+
+<div class="code">
+<pre>
+81	    try:
+82	        result = subprocess.run(
+83	            [&quot;ffmpeg&quot;, &quot;-version&quot;],
+84	            capture_output=True,
+85	            text=True,
+86	            timeout=10
+87	        )
+88	        if result.returncode == 0:
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-11">
+<div class="issue-block issue-sev-low">
+    <b>subprocess_without_shell_equals_true: </b> subprocess call - check for execution of untrusted input.<br>
+    <b>Test ID:</b> B603<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank">CWE-78</a><br>
+    <b>File: </b><a href="src/main.py" target="_blank">src/main.py</a><br>
+    <b>Line number: </b>82<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.4/plugins/b603_subprocess_without_shell_equals_true.html" target="_blank">https://bandit.readthedocs.io/en/1.9.4/plugins/b603_subprocess_without_shell_equals_true.html</a><br>
+
+<div class="code">
+<pre>
+81	    try:
+82	        result = subprocess.run(
+83	            [&quot;ffmpeg&quot;, &quot;-version&quot;],
+84	            capture_output=True,
+85	            text=True,
+86	            timeout=10
+87	        )
+88	        if result.returncode == 0:
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-12">
+<div class="issue-block issue-sev-medium">
+    <b>huggingface_unsafe_download: </b> Unsafe Hugging Face Hub download without revision pinning in from_pretrained()<br>
+    <b>Test ID:</b> B615<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/494.html" target="_blank">CWE-494</a><br>
+    <b>File: </b><a href="src/main.py" target="_blank">src/main.py</a><br>
+    <b>Line number: </b>239<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.4/plugins/b615_huggingface_unsafe_download.html" target="_blank">https://bandit.readthedocs.io/en/1.9.4/plugins/b615_huggingface_unsafe_download.html</a><br>
+
+<div class="code">
+<pre>
+238	        from transformers import WavLMModel
+239	        model = WavLMModel.from_pretrained(&quot;microsoft/wavlm-base-plus&quot;, cache_dir=&quot;./models&quot;)
+240	        logger.info(&quot;   ✅ WavLM carregado&quot;)
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-13">
+<div class="issue-block issue-sev-medium">
+    <b>huggingface_unsafe_download: </b> Unsafe Hugging Face Hub download without revision pinning in from_pretrained()<br>
+    <b>Test ID:</b> B615<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/494.html" target="_blank">CWE-494</a><br>
+    <b>File: </b><a href="src/pronunciation\aligner.py" target="_blank">src/pronunciation\aligner.py</a><br>
+    <b>Line number: </b>55<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.4/plugins/b615_huggingface_unsafe_download.html" target="_blank">https://bandit.readthedocs.io/en/1.9.4/plugins/b615_huggingface_unsafe_download.html</a><br>
+
+<div class="code">
+<pre>
+54	            
+55	            self.processor = Wav2Vec2Processor.from_pretrained(model_name)
+56	            self.model = Wav2Vec2ForCTC.from_pretrained(model_name)
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-14">
+<div class="issue-block issue-sev-medium">
+    <b>huggingface_unsafe_download: </b> Unsafe Hugging Face Hub download without revision pinning in from_pretrained()<br>
+    <b>Test ID:</b> B615<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/494.html" target="_blank">CWE-494</a><br>
+    <b>File: </b><a href="src/pronunciation\aligner.py" target="_blank">src/pronunciation\aligner.py</a><br>
+    <b>Line number: </b>56<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.4/plugins/b615_huggingface_unsafe_download.html" target="_blank">https://bandit.readthedocs.io/en/1.9.4/plugins/b615_huggingface_unsafe_download.html</a><br>
+
+<div class="code">
+<pre>
+55	            self.processor = Wav2Vec2Processor.from_pretrained(model_name)
+56	            self.model = Wav2Vec2ForCTC.from_pretrained(model_name)
+57	            self.model = self.model.to(self.device)
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-15">
+<div class="issue-block issue-sev-low">
+    <b>hardcoded_password_string: </b> Possible hardcoded password: ''<br>
+    <b>Test ID:</b> B105<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>MEDIUM<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/259.html" target="_blank">CWE-259</a><br>
+    <b>File: </b><a href="src/pronunciation\aligner.py" target="_blank">src/pronunciation\aligner.py</a><br>
+    <b>Line number: </b>232<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.4/plugins/b105_hardcoded_password_string.html" target="_blank">https://bandit.readthedocs.io/en/1.9.4/plugins/b105_hardcoded_password_string.html</a><br>
+
+<div class="code">
+<pre>
+231	            except:
+232	                token_text = &quot;&quot;
+233	            
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-16">
+<div class="issue-block issue-sev-medium">
+    <b>huggingface_unsafe_download: </b> Unsafe Hugging Face Hub download without revision pinning in from_pretrained()<br>
+    <b>Test ID:</b> B615<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/494.html" target="_blank">CWE-494</a><br>
+    <b>File: </b><a href="src/pronunciation\wavlm_analyzer.py" target="_blank">src/pronunciation\wavlm_analyzer.py</a><br>
+    <b>Line number: </b>49<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.4/plugins/b615_huggingface_unsafe_download.html" target="_blank">https://bandit.readthedocs.io/en/1.9.4/plugins/b615_huggingface_unsafe_download.html</a><br>
+
+<div class="code">
+<pre>
+48	            
+49	            self.processor = Wav2Vec2FeatureExtractor.from_pretrained(
+50	                model_name,
+51	                cache_dir=&quot;./models&quot;
+52	            )
+53	            
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-17">
+<div class="issue-block issue-sev-medium">
+    <b>huggingface_unsafe_download: </b> Unsafe Hugging Face Hub download without revision pinning in from_pretrained()<br>
+    <b>Test ID:</b> B615<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/494.html" target="_blank">CWE-494</a><br>
+    <b>File: </b><a href="src/pronunciation\wavlm_analyzer.py" target="_blank">src/pronunciation\wavlm_analyzer.py</a><br>
+    <b>Line number: </b>54<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.4/plugins/b615_huggingface_unsafe_download.html" target="_blank">https://bandit.readthedocs.io/en/1.9.4/plugins/b615_huggingface_unsafe_download.html</a><br>
+
+<div class="code">
+<pre>
+53	            
+54	            self.model = WavLMModel.from_pretrained(
+55	                model_name,
+56	                cache_dir=&quot;./models&quot;
+57	            )
+58	            
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-18">
+<div class="issue-block issue-sev-low">
+    <b>blacklist: </b> Consider possible security implications associated with the subprocess module.<br>
+    <b>Test ID:</b> B404<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank">CWE-78</a><br>
+    <b>File: </b><a href="src/web\app.py" target="_blank">src/web\app.py</a><br>
+    <b>Line number: </b>15<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_imports.html#b404-import-subprocess" target="_blank">https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_imports.html#b404-import-subprocess</a><br>
+
+<div class="code">
+<pre>
+14	import os
+15	import subprocess
+16	from pathlib import Path
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-19">
+<div class="issue-block issue-sev-low">
+    <b>try_except_pass: </b> Try, Except, Pass detected.<br>
+    <b>Test ID:</b> B110<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="src/web\app.py" target="_blank">src/web\app.py</a><br>
+    <b>Line number: </b>112<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.4/plugins/b110_try_except_pass.html" target="_blank">https://bandit.readthedocs.io/en/1.9.4/plugins/b110_try_except_pass.html</a><br>
+
+<div class="code">
+<pre>
+111	        await db.close()
+112	    except Exception:
+113	        pass
+114	
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-20">
+<div class="issue-block issue-sev-low">
+    <b>start_process_with_partial_path: </b> Starting a process with a partial executable path<br>
+    <b>Test ID:</b> B607<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank">CWE-78</a><br>
+    <b>File: </b><a href="src/web\app.py" target="_blank">src/web\app.py</a><br>
+    <b>Line number: </b>292<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.4/plugins/b607_start_process_with_partial_path.html" target="_blank">https://bandit.readthedocs.io/en/1.9.4/plugins/b607_start_process_with_partial_path.html</a><br>
+
+<div class="code">
+<pre>
+291	        except:
+292	            subprocess.run([
+293	                &quot;ffmpeg&quot;, &quot;-i&quot;, str(tw), &quot;-acodec&quot;, &quot;pcm_s16le&quot;,
+294	                &quot;-ar&quot;, &quot;16000&quot;, &quot;-ac&quot;, &quot;1&quot;, &quot;-y&quot;, str(twv)
+295	            ], capture_output=True, text=True, timeout=30)
+296	        
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-21">
+<div class="issue-block issue-sev-low">
+    <b>subprocess_without_shell_equals_true: </b> subprocess call - check for execution of untrusted input.<br>
+    <b>Test ID:</b> B603<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank">CWE-78</a><br>
+    <b>File: </b><a href="src/web\app.py" target="_blank">src/web\app.py</a><br>
+    <b>Line number: </b>292<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.4/plugins/b603_subprocess_without_shell_equals_true.html" target="_blank">https://bandit.readthedocs.io/en/1.9.4/plugins/b603_subprocess_without_shell_equals_true.html</a><br>
+
+<div class="code">
+<pre>
+291	        except:
+292	            subprocess.run([
+293	                &quot;ffmpeg&quot;, &quot;-i&quot;, str(tw), &quot;-acodec&quot;, &quot;pcm_s16le&quot;,
+294	                &quot;-ar&quot;, &quot;16000&quot;, &quot;-ac&quot;, &quot;1&quot;, &quot;-y&quot;, str(twv)
+295	            ], capture_output=True, text=True, timeout=30)
+296	        
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-22">
+<div class="issue-block issue-sev-low">
+    <b>try_except_pass: </b> Try, Except, Pass detected.<br>
+    <b>Test ID:</b> B110<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="src/web\app.py" target="_blank">src/web\app.py</a><br>
+    <b>Line number: </b>344<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.4/plugins/b110_try_except_pass.html" target="_blank">https://bandit.readthedocs.io/en/1.9.4/plugins/b110_try_except_pass.html</a><br>
+
+<div class="code">
+<pre>
+343	                        f.unlink()
+344	                except:
+345	                    pass
+346	        asyncio.create_task(cleanup())
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-23">
+<div class="issue-block issue-sev-low">
+    <b>try_except_pass: </b> Try, Except, Pass detected.<br>
+    <b>Test ID:</b> B110<br>
+    <b>Severity: </b>LOW<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/703.html" target="_blank">CWE-703</a><br>
+    <b>File: </b><a href="src/web\app.py" target="_blank">src/web\app.py</a><br>
+    <b>Line number: </b>657<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.4/plugins/b110_try_except_pass.html" target="_blank">https://bandit.readthedocs.io/en/1.9.4/plugins/b110_try_except_pass.html</a><br>
+
+<div class="code">
+<pre>
+656	                            })
+657	                    except:
+658	                        pass
+659	                    
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-24">
+<div class="issue-block issue-sev-medium">
+    <b>hardcoded_sql_expressions: </b> Possible SQL injection vector through string-based query construction.<br>
+    <b>Test ID:</b> B608<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>LOW<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/89.html" target="_blank">CWE-89</a><br>
+    <b>File: </b><a href="src/web\app.py" target="_blank">src/web\app.py</a><br>
+    <b>Line number: </b>769<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.4/plugins/b608_hardcoded_sql_expressions.html" target="_blank">https://bandit.readthedocs.io/en/1.9.4/plugins/b608_hardcoded_sql_expressions.html</a><br>
+
+<div class="code">
+<pre>
+768	    for t in tables:
+769	        c = await db.fetch_one(f&quot;SELECT COUNT(*) as count FROM {t}&quot;)
+770	        st[t] = c[&quot;count&quot;] if c else 0
+</pre>
+</div>
+
+
+</div>
+</div>
+
+</div>
+
+</body>
+</html>
