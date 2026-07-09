@@ -61,6 +61,9 @@ The software is **registered with the Brazilian INPI** (intellectual property of
 ### radio in english
 ![Radio](screenshots/radio.png)
 
+### 47 tests
+![tests](screenshots/tests.png)
+
 ---
 
 ## 🚀 Key Features
